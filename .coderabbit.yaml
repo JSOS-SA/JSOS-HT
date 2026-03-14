@@ -1,0 +1,42 @@
+language: "ar"
+
+tone_instructions: >
+  Focus on Python best practices, PEP 8, type safety,
+  SQL injection prevention in SQLite, context managers.
+
+reviews:
+  profile: "assertive"
+  high_level_summary: true
+  sequence_diagrams: true
+  poem: false
+
+  auto_review:
+    enabled: true
+    drafts: false
+
+  path_filters:
+    - "**/*.py"
+    - "**/*.toml"
+    - "**/*.yaml"
+    - "**/*.md"
+    - "!**/__pycache__/**"
+    - "!**/node_modules/**"
+
+  path_instructions:
+    - path: "scripts/**/*.py"
+      instructions: "Check parameterized queries, context managers, type hints, complexity under 15."
+    - path: "db/**/*.py"
+      instructions: "No f-strings in SQL. Check sqlite3.Error handling and transactions."
+
+  tools:
+    ruff:
+      enabled: true
+    pylint:
+      enabled: true
+    semgrep:
+      enabled: true
+    gitleaks:
+      enabled: true
+
+chat:
+  auto_reply: true
