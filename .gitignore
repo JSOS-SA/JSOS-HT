@@ -95,3 +95,9 @@ docs/الاخطاء_المكتشفه.json
 docs/*.docx
 docs/*.svg
 tools/
+
+# ملفات إكسل وبيانات
+*.xlsx
+*.xls
+*.xlsm
+*.csv
