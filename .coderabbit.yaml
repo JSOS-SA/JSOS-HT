@@ -1,4 +1,4 @@
-﻿language: "ar"
+language: "ar"
 
 tone_instructions: >
   Focus on Python best practices, PEP 8, type safety,
