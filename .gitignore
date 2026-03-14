@@ -101,3 +101,11 @@ tools/
 *.xls
 *.xlsm
 *.csv
+
+docs/
+db/schema.py
+
+db/DOC_sync_record_2026.txt
+db/*نسخة*
+
+scripts/.file_manager_paths.json
