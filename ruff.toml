@@ -1,0 +1,97 @@
+line-length = 120
+target-version = "py312"
+src = ["scripts"]
+
+[lint]
+select = [
+    "F",        # pyflakes — أخطاء منطقية أساسية
+    "E",        # pycodestyle errors — أخطاء التنسيق
+    "W",        # pycodestyle warnings — تحذيرات التنسيق
+    "I",        # isort — ترتيب الاستيرادات
+    "C4",       # flake8-comprehensions — تحسين التعبيرات
+    "UP",       # pyupgrade — تحديث صيغ بايثون القديمة
+    "B",        # flake8-bugbear — أخطاء شائعة خفية
+    "PLC",      # pylint convention
+    "PLE",      # pylint errors
+    "PLR",      # pylint refactor
+    "PLW",      # pylint warnings
+    "D",        # pydocstyle — توثيق الدوال والأصناف
+    "ANN",      # flake8-annotations — تلميحات الأنواع
+    "S",        # flake8-bandit — تحذيرات أمنية
+    "BLE",      # flake8-blind-except — استثناءات عامة
+    "SIM",      # flake8-simplify — تبسيط التعبيرات
+    "PTH",      # flake8-use-pathlib — استخدام pathlib
+    "PERF",     # perflint — تحسين الأداء
+    "RUF",      # ruff-specific — قواعد خاصة بالأداة
+    "TRY",      # tryceratops — أنماط الاستثناءات
+    "DTZ",      # flake8-datetimez — المناطق الزمنية
+    "N",        # pep8-naming — تسمية المتغيرات
+    "ARG",      # flake8-unused-arguments — معاملات غير مستخدمة
+    "T20",      # flake8-print — كشف print
+    "C90",      # mccabe — تعقيد الدوال
+]
+
+ignore = [
+    # === تطبيق طرفية تفاعلي — الطباعة مقصودة ===
+    "T201",
+    # === توثيق بالعربية — الأداة لا تدعم علامات الترقيم العربية ===
+    "D400",
+    "D415",
+    # === استيراد داخل الدوال — مقصود لتجنب الاستيراد الدائري ===
+    "PLC0415",
+    # === أمن — المشروع يعمل محلياً فقط ===
+    "S606",
+    "S607",
+    # === مرونة التعقيد — السكربتات التفاعلية تحتاج مرونة ===
+    "PLR2004",
+    "PLR0912",
+    "PLR0915",
+    "PLR0911",
+    # === متغيرات عامة — مقصود في نظام الإعدادات ===
+    "PLW0603",
+    "PLW0602",
+    # === أحرف يونيكود عربية — المشروع عربي بالكامل ===
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    # === نقل المنطق للمحاولة — أسلوبي وليس خطأ ===
+    "TRY300",
+    # === استيراد في غير البداية — مقصود لتجنب الدوران والتحميل المؤجل ===
+    "E402",
+    # === المناطق الزمنية — طوابع محلية لعرض التقارير والسجلات ===
+    "DTZ005",
+    "DTZ001",
+    # === أوامر النظام — مقصود لفتح الملفات في النظام المحلي ===
+    "S605",
+]
+
+[lint.per-file-ignores]
+"scripts/logger_config.py" = ["PLR0913", "BLE001", "S110", "S608"]
+"scripts/common.py" = ["E501", "F403", "F405", "ANN", "PTH", "BLE001", "S110", "C901", "E741"]
+"main.py" = ["ANN", "F403", "F405", "BLE001"]
+# السكربتات تستخدم from common import * — تصميم مقصود
+"scripts/process.py" = ["F405", "PTH", "BLE001", "S110", "ANN"]
+"scripts/file_manager.py" = ["F405", "PTH", "BLE001", "ANN", "E501", "PERF401", "C901", "S603"]
+"scripts/report_builder_new.py" = ["F405", "PTH", "BLE001", "ANN", "E501", "D205", "C901", "PERF", "N806", "E741", "PLW2901", "SIM102", "S110", "S603", "F401", "ARG001"]
+"scripts/report_charts.py" = ["F405", "PTH", "BLE001", "ANN", "E501", "PERF", "ARG001"]
+"scripts/report_pdf.py" = ["F405", "PTH", "BLE001", "ANN", "E501", "D205", "C901", "PERF", "N806", "S110"]
+"scripts/db_tool.py" = ["F405", "E501", "BLE001"]
+"scripts/monitor_tool.py" = ["F405", "PTH", "BLE001", "ANN", "PLW1510", "S603"]
+"scripts/reports_generator.py" = ["F405", "PTH", "BLE001", "ANN", "E501"]
+"scripts/report_interactive.py" = ["PTH", "BLE001", "ARG001", "PERF401"]
+"scripts/generate_call_graph.py" = ["PTH", "BLE001", "ANN", "PERF401"]
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.pylint]
+max-args = 7
+max-branches = 15
+max-statements = 60
+max-returns = 8
+
+[lint.mccabe]
+max-complexity = 15
+
+[lint.isort]
+known-first-party = ["common", "logger_config", "db", "preprocess"]

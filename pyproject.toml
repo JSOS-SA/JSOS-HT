@@ -1,0 +1,202 @@
+[project]
+name = "ht-sc"
+version = "1.0.0"
+description = "نظام إدارة حافلات صالة الحج — واجهة طرفية تفاعلية"
+requires-python = ">=3.12"
+dependencies = [
+    "arabic-reshaper>=3.0.0",
+    "kaleido>=1.2.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+    "plotly>=6.6.0",
+    "python-bidi>=0.6.7",
+    "reportlab>=4.4.10",
+    "xlsxwriter>=3.2.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.15.0",
+    "pytest>=8.0.0",
+    "ruff>=0.15.0",
+]
+
+[project.scripts]
+ht-sc = "main:main"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = [
+    "scripts",
+]
+
+[tool.ruff.lint]
+select = [
+    "ANN",
+    "ARG",
+    "B",
+    "BLE",
+    "C4",
+    "C90",
+    "D",
+    "DTZ",
+    "E",
+    "F",
+    "I",
+    "N",
+    "PERF",
+    "PLC",
+    "PLE",
+    "PLR",
+    "PLW",
+    "PTH",
+    "RUF",
+    "S",
+    "SIM",
+    "T20",
+    "TRY",
+    "UP",
+    "W",
+]
+ignore = [
+    "D400",
+    "D415",
+    "DTZ001",
+    "DTZ005",
+    "E402",
+    "PLC0415",
+    "PLR0911",
+    "PLR0912",
+    "PLR0915",
+    "PLR2004",
+    "PLW0602",
+    "PLW0603",
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    "S605",
+    "S606",
+    "S607",
+    "T201",
+    "TRY300",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"main.py" = [
+    "ANN",
+    "BLE001",
+    "F403",
+    "F405",
+]
+"scripts/common.py" = [
+    "ANN",
+    "BLE001",
+    "C901",
+    "E501",
+    "E741",
+    "F403",
+    "F405",
+    "PTH",
+    "S110",
+]
+"scripts/db_tool.py" = [
+    "BLE001",
+    "E501",
+    "F405",
+]
+"scripts/file_manager.py" = [
+    "ANN",
+    "BLE001",
+    "C901",
+    "E501",
+    "F405",
+    "PERF401",
+    "PTH",
+    "S603",
+]
+"scripts/generate_call_graph.py" = [
+    "ANN",
+    "BLE001",
+    "PERF401",
+    "PTH",
+]
+"scripts/logger_config.py" = [
+    "BLE001",
+    "PLR0913",
+    "S110",
+    "S608",
+]
+"scripts/monitor_tool.py" = [
+    "ANN",
+    "BLE001",
+    "F405",
+    "PLW1510",
+    "PTH",
+    "S603",
+]
+"scripts/process.py" = [
+    "ANN",
+    "BLE001",
+    "F405",
+    "PTH",
+    "S110",
+]
+"scripts/report_builder.py" = [
+    "ANN",
+    "ARG001",
+    "BLE001",
+    "C901",
+    "D205",
+    "E501",
+    "E741",
+    "F401",
+    "F405",
+    "N806",
+    "PERF",
+    "PLW2901",
+    "PTH",
+    "S110",
+    "S603",
+    "SIM102",
+]
+"scripts/report_interactive.py" = [
+    "ARG001",
+    "BLE001",
+    "PERF401",
+    "PTH",
+]
+"scripts/reports_generator.py" = [
+    "ANN",
+    "E501",
+    "F405",
+    "PTH",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 7
+max-branches = 15
+max-statements = 60
+max-returns = 8
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "common",
+    "db",
+    "logger_config",
+    "preprocess",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+python_files = [
+    "test_*.py",
+]
